@@ -1,18 +1,8 @@
-# Travelling Salesman Problem
+
 from itertools import permutations
 
 def tsp(graph, start):
     n = len(graph)
-
-    if n == 0:
-        return 0, []
-
-    if n == 1:
-        return 0, [start]
-
-    if start < 0 or start >= n:
-        raise ValueError("Invalid start node")
-
     cities = [i for i in range(n) if i != start]
 
     min_cost = float('inf')
@@ -32,19 +22,58 @@ def tsp(graph, start):
             min_cost = cost
             best_path = [start] + list(path) + [start]
 
-    return min_cost, best_path
+    print("Minimum Cost:", min_cost)
+    print("Best Path:", best_path)
 
 
-# Example graph (cost matrix)
-graph = [
+# Test Case 1: 4 Cities
+print("\nTest Case 1: 4 Cities")
+graph1 = [
     [0, 10, 15, 20],
     [10, 0, 35, 25],
     [15, 35, 0, 30],
     [20, 25, 30, 0]
 ]
+tsp(graph1, 0)
 
-start = 0
-cost, path = tsp(graph, start)
 
-print("Minimum tour cost:", cost)
-print("Best path:", path)
+# Test Case 2: 3 Cities
+print("\nTest Case 2: 3 Cities")
+graph2 = [
+    [0, 10, 15],
+    [10, 0, 20],
+    [15, 20, 0]
+]
+tsp(graph2, 0)
+
+
+# Test Case 3: 4 Cities with Different Costs
+print("\nTest Case 3: Different Costs")
+graph3 = [
+    [0, 5, 10, 15],
+    [5, 0, 9, 10],
+    [10, 9, 0, 8],
+    [15, 10, 8, 0]
+]
+tsp(graph3, 0)
+
+
+# Test Case 4: 2 Cities
+print("\nTest Case 4: 2 Cities")
+graph4 = [
+    [0, 10],
+    [10, 0]
+]
+tsp(graph4, 0)
+
+
+# Test Case 5: 5 Cities
+print("\nTest Case 5: 5 Cities")
+graph5 = [
+    [0, 2, 9, 10, 7],
+    [2, 0, 6, 4, 3],
+    [9, 6, 0, 8, 5],
+    [10, 4, 8, 0, 6],
+    [7, 3, 5, 6, 0]
+]
+tsp(graph5, 0)

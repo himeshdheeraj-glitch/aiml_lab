@@ -3,6 +3,16 @@ from itertools import permutations
 
 def tsp(graph, start):
     n = len(graph)
+
+    if n == 0:
+        return 0, []
+
+    if n == 1:
+        return 0, [start]
+
+    if start < 0 or start >= n:
+        raise ValueError("Invalid start node")
+
     cities = [i for i in range(n) if i != start]
 
     min_cost = float('inf')
@@ -21,10 +31,8 @@ def tsp(graph, start):
         if cost < min_cost:
             min_cost = cost
             best_path = [start] + list(path) + [start]
-
     print("Minimum Cost:", min_cost)
     print("Best Path:", best_path)
-
 
 # Test Case 1: 4 Cities
 print("\nTest Case 1: 4 Cities")
